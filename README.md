@@ -5,7 +5,14 @@ With Docca you can simply archive scanned documents.
 
 Installation
 --
-You need to have `git` and `composer` installed on your linux system
+You need to have ìnstalled (preferably on a linux system):
+    git
+    composer
+    php 7.1 (command line interface and webserver)
+    mysql database
+    php-imagick
+    
+Then you can set up the app with
 
     $ git clone https://github.com/hajika/docca
     $ cd docca
