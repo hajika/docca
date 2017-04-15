@@ -6,6 +6,7 @@ With Docca you can simply archive scanned documents.
 Installation
 --
 You need to have ìnstalled (preferably on a linux system):
+
     git
     composer
     php 7.1 (command line interface and webserver)
