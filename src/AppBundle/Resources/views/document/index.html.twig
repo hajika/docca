@@ -1,0 +1,106 @@
+{% extends 'base.html.twig' %}
+
+{% block container %}
+    
+    <div id="docslist" class="table">
+    
+    <div class="row head">
+        <div class="cell">{{ 'Title'|trans }}</div>
+        <div class="cell">{{ 'Comment'|trans }}</div>  
+        <div class="cell">{{ 'Tags'|trans }}</div>    
+        <div class="cell">{{ 'Actions'|trans }}</div> 
+    </div>
+    
+    {% for document in documents %}
+    
+        <div class="row">
+            <div class="cell name">
+                <a href="{{ path('doc_show', { 'id': document.id }) }}">
+                    {{ document.title }}
+                    {# <?= $document->getNameMarkedBy($marked['documentname'], '<span class="marked">', '</span>'); ?> #}
+                </a>
+            </div>
+            
+            <div class="cell comment">
+                {{ document.comment }}
+                {# <?= $document->getCommentMarkedBy($marked['documentcomment'], '<span class="marked">', '</span>'); ?> #}
+            </div>
+            
+            <div class="cell tags">
+                
+                {% for tag in document.tags %}
+                    {{ tag.label }}, 
+                {% endfor %}
+                
+                {# <?php
+
+                    $i=0;
+                    foreach ($document->getTags() as $tag) { $i++;
+
+                    $markClass = (isset($marked['tags']) AND in_array(strtolower($tag->getName()), $marked['tags'])) ? 'marked' : '';
+                        echo '<a href="' . DIR . 'docs/find?filter[hastags]=' . $tag->getName() . '" class="' . $markClass . '">' . $tag->getName() . '</a>';
+                        echo count($document->getTags()) > $i ? ' | ' : '';
+                    }
+
+                ?>  #}
+            </div>
+            
+            <div class="cell actions">
+                <a href="{{ path('doc_edit', { 'id': document.id }) }}" title="{{ 'edit'|trans }}"><img src="{{ asset('images/edit_16.png') }}"></a>
+                <a href="{{ path('doc_delete', { 'id': document.id }) }}" onclick="return confirm('{{ 'Do you really want to remove this Document?'|trans }}');" title="{{ 'Remove'|trans }}"><img src="{{ asset('images/delete_16.png') }}"></a>
+            </div>
+        </div>  
+ 
+    {% endfor %}
+        
+    </div>
+
+{% endblock %}
+
+{% block old %}
+        <h1>Documents list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Uploadername</th>
+                <th>Uploadtime</th>
+                <th>Sourcetime</th>
+                <th>Comment</th>
+                <th>Active</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for document in documents %}
+            <tr>
+                <td><a href="{{ path('doc_show', { 'id': document.id }) }}">{{ document.id }}</a></td>
+                <td>{{ document.title }}</td>
+                <td>{{ document.uploaderName }}</td>
+                <td>{% if document.uploadTime %}{{ document.uploadTime|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if document.sourceTime %}{{ document.sourceTime|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ document.comment }}</td>
+                <td>{% if document.active %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('doc_show', { 'id': document.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('doc_edit', { 'id': document.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('doc_new') }}">Create a new document</a>
+        </li>
+    </ul>
+{% endblock %}

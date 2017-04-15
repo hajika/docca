@@ -1,0 +1,16 @@
+app_doc:
+    resource: "@AppBundle/Resources/config/routing/document.yml"
+    prefix:   /doc
+    
+app_tag:
+    resource: "@AppBundle/Resources/config/routing/tag.yml"
+    prefix:   /tag    
+
+app_attributekeyvalue:
+    resource: "@AppBundle/Resources/config/routing/attributekeyvalue.yml"
+    prefix:   /attributekeyvalue
+    
+app_file:
+    resource: "@AppBundle/Resources/config/routing/file.yml"
+    prefix:   /file
+

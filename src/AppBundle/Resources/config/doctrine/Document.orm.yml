@@ -1,0 +1,44 @@
+AppBundle\Entity\Document:
+    type: entity
+    table: documents
+    repositoryClass: AppBundle\Repository\DocumentRepository
+    oneToMany:
+        files:
+            targetEntity: File
+            mappedBy: document
+            cascade: [remove]
+    manyToMany:
+        tags:
+          targetEntity: Tag
+          inversedBy: documents
+          joinTable:
+              name: documents_tags
+        attributes:
+          targetEntity: AttributeKeyValue
+          inversedBy: documents
+          joinTable:
+              name: documents_attributes
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: 255
+        uploaderName:
+            type: string
+            length: 255
+            nullable: true
+        uploadTime:
+            type: datetime
+        sourceTime:
+            type: datetime
+        comment:
+            type: string
+            length: '9999999999'
+            nullable: true
+        active:
+            type: boolean

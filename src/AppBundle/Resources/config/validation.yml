@@ -1,0 +1,7 @@
+AppBundle\Entity\Document:
+    properties:
+        title:
+            - NotBlank: { message: 'title.notblank'}
+        sourceTime: 
+            - DateTime: { message: 'sourceTime.notvalid' }
+        

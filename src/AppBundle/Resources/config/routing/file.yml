@@ -1,0 +1,4 @@
+file_download:
+    path:     /download/{id}
+    defaults: { _controller: "AppBundle:File:download" }
+    methods:  GET

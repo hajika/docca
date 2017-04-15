@@ -1,0 +1,23 @@
+AppBundle\Entity\AttributeKey:
+    type: entity
+    table: attribute_keys
+    repositoryClass: AppBundle\Repository\AttributeKeyRepository
+    oneToMany:
+        keyValue:
+            targetEntity: AttributeKeyValue
+            mappedBy: key
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        label:
+            type: string
+            length: 255
+            unique: true
+        sort:
+            type: integer
+
+

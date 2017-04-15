@@ -1,0 +1,118 @@
+{% extends 'base.html.twig' %}
+
+{% block container %}
+    <div id="docview">
+    
+        <div id="haze"></div>
+
+        <div id="file-options">
+            <div class="download">
+                <span class="title">Datei herunterladen</span>
+                {% for file in document.files %}
+                    <div>
+                        <a href="{{ path('file_download', {'id' : file.id}) }}" file-id="{{ file.id }}">
+                            {{ file.label }}
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    <form method="POST" action="save" enctype="multipart/form-data">
+
+        <div class="table single data">
+
+            <div class="caption">
+                {{ document.title }}
+            </div>
+
+            <div class="row files">
+                <div class="cell">{{ 'Files'|trans }}</div>
+                <div class="cell">
+                    {% for file in document.files %}
+
+                        <div class="file" file-id="{{ file.id }}">
+
+                            {# todo: all thumbs from all files should be merged together #}
+                            {% for pageNumber in 0..file.numberPages-1 %}
+
+                                {% set width = (file.numberPages > 5) ? (100 / file.numberPages - 2) : 'inherit' %}
+
+                                <a href="#show-preview" class="thumb" style="width: {{ width }}%; z-index: {{ file.numberPages - pageNumber }}">
+                                    <img src="{{ asset('images/thumbs/' ~ file.name ~ '_' ~ pageNumber) }}.jpg">
+                                </a>
+
+                                <img class="preview" src="{{ asset('images/previews/' ~ file.name ~ '_' ~ pageNumber) }}.jpg">
+                    
+                            {% endfor %}
+
+                        </div>
+
+                    {% else %}
+                        
+                        {{ 'No files'|trans }}
+                        
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="row sourcetime">
+                <div class="cell">{{ 'Source Time'|trans }}</div>
+                <div class="cell">{{ document.sourceTime|date('d.m.Y') }}</div>
+            </div>
+
+            <div class="row comment">
+                <div class="cell">{{ 'Comment'|trans }}</div>
+                <div class="cell"><i>{{ document.comment }}</i></div>
+            </div>
+
+            <div class="row tags">
+                <div class="cell">{{ 'Tags'|trans }}</div>
+                <div class="cell">
+                    {% for tag in document.tags %}
+                        {{ tag.label }}, 
+                    {% endfor %}
+                    {# link auf die suchfunktion mit hastags machen #}
+                </div>
+            </div>
+
+                    {# <div class="row attributes">
+                        <div class="cell"><?= Language::show('form_attributes', 'Document'); ?></div>
+                        <div class="cell table">
+                            <?php
+        
+                                $i=0;
+                                foreach ($document->getAttributes() as $attribute) {
+        
+                                    echo '<div class="row">';
+                                        echo '<span class="cell attribute-name">' . $attribute->getName() . '</span>';
+                                        echo '<a class="cell attribute-value" href="' . DIR . 'docs/find?filter[hasattributevalue]=' . $attribute->getName() . ':' . $attribute->getValueName() . '">' . $attribute->getValueName() . '</a>';
+                                    echo '</div>';
+                                }
+        
+                            ?> 
+                        </div>
+                    </div> #}
+
+            <div class="row uploader">
+                <div class="cell">{{ 'Uploader name'|trans }}</div>
+                <div class="cell">{{ document.uploaderName }}</div>
+            </div>
+
+        </div>
+
+        <div class="options">
+
+            <a href="{{ path('doc_edit', { 'id': document.id }) }}" class="edit">
+                <img src="{{ asset('images/edit111.png') }}">
+            </a>
+            <a href="{{ path('doc_delete', { 'id': document.id }) }}" onclick="return confirm('{{ 'Do you really want to remove this Document?'|trans }}');" class="delete">
+                <img src="{{ asset('images/delete111.png') }}">
+            </a>
+
+        </div>
+
+    </form>
+
+    </div>
+{% endblock %}

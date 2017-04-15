@@ -1,0 +1,19 @@
+AppBundle\Entity\Tag:
+    type: entity
+    table: tags
+    repositoryClass: AppBundle\Repository\TagRepository
+    manyToMany:
+        documents:
+          targetEntity: Document
+          mappedBy: tags
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        label:
+            type: string
+            length: 255
+            unique: true

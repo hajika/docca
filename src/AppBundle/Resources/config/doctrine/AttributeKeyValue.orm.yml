@@ -1,0 +1,23 @@
+AppBundle\Entity\AttributeKeyValue:
+    type: entity
+    table: attribute_keys_values
+    repositoryClass: AppBundle\Repository\AttributeKeyValueRepository
+    manyToOne:
+        key:
+            targetEntity: AttributeKey
+            inversedBy: keyValue
+        value:
+            targetEntity: AttributeValue
+            inversedBy: keyValue
+    manyToMany:
+        documents:
+          targetEntity: Document
+          mappedBy: attributes    
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+            
+    

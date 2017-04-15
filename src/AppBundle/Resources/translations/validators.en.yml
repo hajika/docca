@@ -1,0 +1,4 @@
+#Document
+title.notblank :  'Der Titel darf nicht leer sein'
+sourceTime.notvalid : 'Das Datum hat ein falsches Format, bitte in dieser Form eintragen: 23.04.2017'
+filesnew.notblank : 'Mindestens eine Datei muss hochgeladen werden'

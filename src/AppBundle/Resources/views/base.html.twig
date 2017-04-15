@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Docca{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" />
+    <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery-ui_custom/jquery-ui.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/index.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/filterbar.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/edit.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/view.js') }}"></script>
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/icon2.png') }}" />
+</head>
+<body>
+
+
+<div id="menu">   
+    
+    <a href="" title="{{ 'Options'|trans }}">
+        <img src="{{ asset('images/options2.png') }}">
+    </a>
+    
+    <a href="" title="{{ 'Search'|trans }}">
+        <img src="{{ asset('images/search3.png') }}">
+    </a>
+    
+    <a href="{{ path('doc_index') }}" title="{{ 'Document index'|trans }}">
+        <img src="{{ asset('images/list4.png') }}">
+    </a>
+    
+    <a href="{{ path('doc_new') }}" title="{{ 'Add document'|trans }}">
+        <img src="{{ asset('images/add2.png') }}">
+    </a>
+    
+    <div id="title">
+        <img src="{{ asset('images/title.png') }}"> Docca
+    </div>
+    
+</div>
+    
+<div class="container">
+    {% block container %}
+    {% endblock %}
+</div>
+
+</body>
+</html>

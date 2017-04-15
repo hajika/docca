@@ -1,0 +1,113 @@
+<?php
+
+namespace AppBundle\Entity;
+
+/**
+ * DocumentAttribute
+ */
+class DocumentAttribute
+{
+
+    /**
+     * @var integer
+     */
+    private $id;
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+    /**
+     * @var \AppBundle\Entity\AttributeKey
+     */
+    private $attributes;
+
+
+    /**
+     * Set attributes
+     *
+     * @param \AppBundle\Entity\AttributeKey $attributes
+     *
+     * @return DocumentAttribute
+     */
+    public function setAttributes(\AppBundle\Entity\AttributeKey $attributes = null)
+    {
+        $this->attributes = $attributes;
+
+        return $this;
+    }
+
+    /**
+     * Get attributes
+     *
+     * @return \AppBundle\Entity\AttributeKey
+     */
+    public function getAttributes()
+    {
+        return $this->attributes;
+    }
+    /**
+     * @var \AppBundle\Entity\AttributeKey
+     */
+    private $attributeKey;
+
+    /**
+     * @var \AppBundle\Entity\AttributeValue
+     */
+    private $attributeValue;
+
+
+    /**
+     * Set attributeKey
+     *
+     * @param \AppBundle\Entity\AttributeKey $attributeKey
+     *
+     * @return DocumentAttribute
+     */
+    public function setAttributeKey(\AppBundle\Entity\AttributeKey $attributeKey = null)
+    {
+        $this->attributeKey = $attributeKey;
+
+        return $this;
+    }
+
+    /**
+     * Get attributeKey
+     *
+     * @return \AppBundle\Entity\AttributeKey
+     */
+    public function getAttributeKey()
+    {
+        return $this->attributeKey;
+    }
+
+    /**
+     * Set attributeValue
+     *
+     * @param \AppBundle\Entity\AttributeValue $attributeValue
+     *
+     * @return DocumentAttribute
+     */
+    public function setAttributeValue(\AppBundle\Entity\AttributeValue $attributeValue = null)
+    {
+        $this->attributeValue = $attributeValue;
+
+        return $this;
+    }
+
+    /**
+     * Get attributeValue
+     *
+     * @return \AppBundle\Entity\AttributeValue
+     */
+    public function getAttributeValue()
+    {
+        return $this->attributeValue;
+    }
+}

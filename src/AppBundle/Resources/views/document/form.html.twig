@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'form/form_errors.html.twig' %}
+
+{% block container %}
+    
+    {{ form_start(form) }}
+    
+    <div id="docform" class="table single data">
+        
+        <div class="row">
+            <div class="cell">{{ form_label(form.title) }}</div>
+            <div class="cell">
+                {{ form_widget(form.title, {'attr': {'placeholder' : 'choose distinctive and simple title' } }) }}
+                {{ form_errors(form.title) }}
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="cell">{{ 'Files'|trans }}</div>
+            <div class="cell">
+
+                {% block edit_files %}
+                {% endblock %}
+                
+                {{ form_widget(form.files_new) }}
+                {{ form_errors(form.files_new) }}
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="cell">{{ 'Source date'|trans }}</div>
+            <div class="cell">
+                {{ form_widget(form.sourceTime, {'attr': {'placeholder' : '23.04.2016' } }) }}
+                {{ form_errors(form.sourceTime) }}
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="cell">{{ form_label(form.comment) }}</div>
+            <div class="cell">
+                {{ form_widget(form.comment) }}
+                {{ form_errors(form.comment) }}
+            </div>
+            
+        </div>
+        
+        <div class="row">
+            <div class="cell">{{ form_label(form.tags) }}</div>
+            <div class="cell">                
+                    {{ form_widget(form.tags, {'attr': {'placeholder' : 'court, rent, complaint' } }) }}
+                    {{ form_errors(form.tags) }}
+            </div>
+        </div>
+        
+            {# <div class="row attributes">
+                <div class="cell">{{ form_label(form.attributes) }}</div>
+                <div class="cell table">
+                    
+                    {% for attribute in attributes %}
+                        
+                        <div class="attribute row">
+                            <div class="name cell">
+                                {{ attribute.label }}
+                            </div>
+                            <div class="values cell">
+                                <select name="attributes[' . $attribute['id'] . ']">
+                                    <option value="0">nicht gewählt</option>
+                                    {% for value in attribute.values %}
+                                        <option value="{{ value.id }}">{{ value.label }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        
+                    {% endfor %}
+                    
+                </div>
+            </div> #}
+            
+        <div class="row">
+            <div class="cell"></div>
+            <div class="cell">
+                {{ form_widget(form.save) }}
+                {% block delete_button %}{% endblock %}
+            </div>
+        </div>
+            
+    </div>
+        
+    {% block options %}
+    {% endblock %}
+    
+    {{ form_end(form) }}
+    
+{% endblock %}

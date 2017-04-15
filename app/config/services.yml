@@ -1,0 +1,17 @@
+services:
+
+    app.form.type.document:
+        class: AppBundle\Form\DocumentType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type } 
+        #https://symfony.com/doc/current/form/form_dependencies.html
+        
+    app.doctrine.file_listener:
+        class: AppBundle\Doctrine\Listener\FileListener
+        public: false
+        arguments: ['%path_upload%', '%path_thumb%', '%path_preview%']
+        tags:
+            - { name: 'doctrine.orm.entity_listener' }
+        deprecated: "Blabla %service_id%"
+

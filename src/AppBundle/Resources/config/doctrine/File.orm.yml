@@ -1,0 +1,26 @@
+AppBundle\Entity\File:
+    type: entity
+    entityListeners:
+        AppBundle\Doctrine\Listener\FileListener:
+            postRemove: [postRemove]
+    table: files
+    repositoryClass: AppBundle\Repository\FileRepository
+    manyToOne:
+        document:
+            targetEntity: Document
+            inversedBy: files
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        label:
+            type: string
+            length: 255
+        name:
+            type: string
+            length: 255
+        numberPages:
+            type: integer

@@ -1,0 +1,30 @@
+{% extends 'document/form.html.twig' %}
+
+{% block container_title %}
+    <b>Dokument bearbeiten</b>
+{% endblock %}
+
+{% block edit_files %}
+    {% for file in form.files %}
+        <div class="files">
+            <span class="file-delete" title="{{ 'remove file'|trans }}">✔</span>
+            <span class="file-activate" title="{{ 'keep file'|trans }}">x</span>
+            <a href="{{ file.vars.value.name }}">{{ file.vars.value.label }}</a>
+            {{ form_widget(file.label) }}
+        </div>
+    {% endfor %}
+{% endblock %}
+
+{% block options %}
+    <div class="options">
+
+        <a href="{{ path('doc_show', { 'id': document.id }) }}" class="edit">
+            <img src="{{ asset('images/document.png') }}">
+        </a>
+
+    </div>
+{% endblock %}
+
+{% block delete_button %}
+    {{ form_widget(form.delete, {'attr' : { 'class' : 'remove', 'onclick' : 'return confirm(\'' ~ 'Do you really want to remove this Document?'|trans ~ '\')'} }) }}
+{% endblock %}
