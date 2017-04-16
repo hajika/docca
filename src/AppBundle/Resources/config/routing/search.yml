@@ -1,0 +1,4 @@
+search_index:
+    path:     /
+    defaults: { _controller: "AppBundle:Search:index" }
+    methods:  GET
