@@ -13,5 +13,8 @@ services:
         arguments: ['%path_upload%', '%path_thumb%', '%path_preview%']
         tags:
             - { name: 'doctrine.orm.entity_listener' }
-        deprecated: "Blabla %service_id%"
+        
+    app.file_uploader:
+        class: AppBundle\Services\FileUploader
+        arguments: ['%path_upload%', '%path_thumb%', '%path_preview%']
 

@@ -40,4 +40,10 @@ class FileListener {
             unlink($this->path_preview . $file->getName() . '_' . $pageNumber . '.jpg');
         }
     }
+    
+    //
+    public function prePersistX($file) {
+        
+        $this->uploadFiles($document, $this->getFiles());
+    }
 }

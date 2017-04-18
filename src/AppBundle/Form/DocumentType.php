@@ -28,8 +28,10 @@ class DocumentType extends AbstractType {
                 ->add('sourceTime', Type\DateType::class, ['widget' => 'single_text', 'format' => 'dd.MM.yyy'])
                 ->add('comment', Type\TextareaType::class, ['required' => false])
                 ->add('tags', Type\TextType::class, ['required' => false])
-                ->add('files_new', Type\FileType::class, ['mapped' => false, 'multiple' => true, 'required' => !$isEdit])
+                #->add('files_new', Type\FileType::class, ['mapped' => false, 'multiple' => true, 'required' => !$isEdit])
+                ->add('files', Type\CollectionType::class, ['entry_type' => Type\FileType::class])
                 ->add('save', Type\SubmitType::class)
+                ->get('tags')->addModelTransformer(new DataTransformer\TagsToStringTransformer($this->manager))
                 ;
         
         if ($isEdit) {
@@ -38,9 +40,6 @@ class DocumentType extends AbstractType {
                 ->add('files', Type\CollectionType::class, ['entry_type' => FileType::class, 'allow_add' => true, 'allow_delete' => true])
                 ->add('delete', Type\SubmitType::class);
         }
-        
-        $builder->get('tags')
-            ->addModelTransformer(new DataTransformer\TagsToStringTransformer($this->manager));
         
     }
     

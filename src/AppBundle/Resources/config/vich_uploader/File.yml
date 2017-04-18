@@ -1,0 +1,7 @@
+Acme\Entity\File:
+    file:
+        mapping:           document_file # required
+        filename_property: name     # required
+        size:              size
+        mime_type:         mimeType
+        original_name:     originalName

@@ -22,5 +22,13 @@ AppBundle\Entity\File:
         name:
             type: string
             length: 255
+        size:
+            type: integer
+        mimeType:
+            type: string
+            length: 255
+        originalName:
+            type: string
+            length: 255
         numberPages:
             type: integer

@@ -14,7 +14,8 @@ class FileType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         
-        $builder->add('label', Type\HiddenType::class); #todo only used for deletion check
+        #$builder->add('label', Type\HiddenType::class); #todo only used for deletion check
+        $builder->add('filebits', FileType::class, []);
     }
     
     /**

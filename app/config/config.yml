@@ -63,6 +63,12 @@ doctrine:
         
 vich_uploader:
     db_driver: orm
+    mappings:
+        document_file:
+            uri_prefix:         /download/
+            upload_destination: '%path_upload%'
+            delete_on_update:   true
+            delete_on_remove:   true
 
 # Swiftmailer Configuration
 swiftmailer:

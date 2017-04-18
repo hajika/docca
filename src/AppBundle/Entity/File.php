@@ -25,6 +25,21 @@ class File
     /**
      * @var integer
      */
+    private $size;
+
+    /**
+     * @var string
+     */
+    private $mimeType;
+
+    /**
+     * @var string
+     */
+    private $originalName;
+
+    /**
+     * @var integer
+     */
     private $numberPages;
 
     /**
@@ -92,6 +107,78 @@ class File
     }
 
     /**
+     * Set size
+     *
+     * @param integer $size
+     *
+     * @return File
+     */
+    public function setSize($size)
+    {
+        $this->size = $size;
+
+        return $this;
+    }
+
+    /**
+     * Get size
+     *
+     * @return integer
+     */
+    public function getSize()
+    {
+        return $this->size;
+    }
+
+    /**
+     * Set mimeType
+     *
+     * @param string $mimeType
+     *
+     * @return File
+     */
+    public function setMimeType($mimeType)
+    {
+        $this->mimeType = $mimeType;
+
+        return $this;
+    }
+
+    /**
+     * Get mimeType
+     *
+     * @return string
+     */
+    public function getMimeType()
+    {
+        return $this->mimeType;
+    }
+
+    /**
+     * Set originalName
+     *
+     * @param string $originalName
+     *
+     * @return File
+     */
+    public function setOriginalName($originalName)
+    {
+        $this->originalName = $originalName;
+
+        return $this;
+    }
+
+    /**
+     * Get originalName
+     *
+     * @return string
+     */
+    public function getOriginalName()
+    {
+        return $this->originalName;
+    }
+
+    /**
      * Set numberPages
      *
      * @param integer $numberPages
@@ -138,4 +225,32 @@ class File
     {
         return $this->document;
     }
+
+    /**
+     * @var \Symfony\Component\HttpFoundation\File\File
+     */
+    private $filebits;
+    
+    /**
+     * Set temporary file content, not for persisting
+     * 
+     * @param \Symfony\Component\HttpFoundation\File\File $filebits
+     * @return \AppBundle\Entity\File
+     */
+    public function setFilebits(\Symfony\Component\HttpFoundation\File\File $filebits)
+    {
+        $this->filebits = $filebits;
+        return $this;
+    }
+    
+    /**
+     * Get temporary file content
+     * 
+     * @return \Symfony\Component\HttpFoundation\File\File
+     */
+    public function getFilebits()
+    {
+        return $this->filebits;
+    }
 }
+
