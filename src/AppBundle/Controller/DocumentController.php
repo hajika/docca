@@ -37,7 +37,8 @@ class DocumentController extends Controller
         $document = new Document();
         $form = $this->createForm('AppBundle\Form\DocumentType', $document);
         $form->handleRequest($request);
-
+        
+        // process submitted form
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();            
                         
@@ -45,7 +46,7 @@ class DocumentController extends Controller
                     ->setUploadTime(new \DateTime('now'))
                     ->setActive(true);
             
-            #dump($form->get('files_new')->getData()); die(); 
+            //upload and add files
             $uploadedFiles = $form->get('files_new')->getData();
             $files = $this->get('app.file_uploader')->init($document, $em)->upload($uploadedFiles);
             $document->addFiles($files);
@@ -101,9 +102,11 @@ class DocumentController extends Controller
         // process submitted form
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             
-            // remove und upload files
+            // remove deleted files and add new uploaded files
             $document = $this->removeFiles($document, $originalFiles);            
-            dump($editForm->get('files_new')->getData()); die();
+            $uploadedFiles = $editForm->get('files_new')->getData();
+            $files = $this->get('app.file_uploader')->init($document, $em)->upload($uploadedFiles);
+            $document->addFiles($files);
 
             $em->persist($document);
             $em->flush();

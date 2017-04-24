@@ -4,7 +4,7 @@ namespace AppBundle;
 
 class Config {
     
-    const FILE_UPLOAD_PATH = '../web/uploads/';
+    const FILE_UPLOAD_PATH = '../uploads/';
     
     const FILE_THUMB_PATH = '../web/images/thumbs/';
     const FILE_THUMB_SCALE_COLS = 70;

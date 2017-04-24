@@ -14,8 +14,8 @@
 !var/SymfonyRequirements.php
 /vendor/
 /web/bundles/
-/web/uploads/*
-!/web/uploads/.gitkeep
+/uploads/*
+!/uploads/.gitkeep
 /web/images/previews/*
 !/web/images/previews/.gitkeep
 /web/images/thumbs/*

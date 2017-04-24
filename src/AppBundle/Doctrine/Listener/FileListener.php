@@ -6,13 +6,6 @@ use \AppBundle\Entity\File;
 
 class FileListener {
     
-    public function __construct($path_upload, $path_thumb, $path_preview) {
-        
-        $this->path_upload = $path_upload;
-        $this->path_thumb = $path_thumb;
-        $this->path_preview = $path_preview;
-    }
-    
     /**
      * Start actions after the removal of a File Entity
      * 
@@ -26,18 +19,24 @@ class FileListener {
     /**
      * Remove files from the filesystem
      * 
-     * @param type $file
+     * @param File $file
      */
-    private function removeFiles($file) {
+    private function removeFiles(File $file) {
         
-        // remove uploaded original
-        unlink($this->path_upload . $file->getName());
-
-        // remove thumbs and previews
-        for ($pageNumber=0; $pageNumber<$file->getNumberPages(); $pageNumber++) {
-
-            unlink($this->path_thumb . $file->getName() . '_' . $pageNumber . '.jpg');
-            unlink($this->path_preview . $file->getName() . '_' . $pageNumber . '.jpg');
+        // remove original file
+        is_file($file->getPath()) ? unlink($file->getPath()) : '';   
+        
+        
+        // remove thumbs
+        foreach ($file->getThumbPaths() as $path) {
+            
+            is_file($path) ? unlink($path) : '';
+        }      
+        
+        // remove previews
+        foreach ($file->getPreviewPaths() as $path) {
+            
+            is_file($path) ? unlink($path) : '';
         }
     }
 }

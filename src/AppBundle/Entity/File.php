@@ -168,7 +168,21 @@ class File
         return $this->document;
     }
     
-    //
+    /**
+     * Return path of original file
+     * 
+     * @return string
+     */
+    public function getPath() {
+     
+        return \AppBundle\Config::FILE_UPLOAD_PATH . $this->getName();
+    }
+    
+    /**
+     * Return Array of Thumb Assets
+     * 
+     * @return array
+     */
     public function getThumbAssets() {
         
         for ($i=0; $i<$this->getNumberPages(); $i++) {
@@ -179,7 +193,11 @@ class File
         return $assets;
     }
     
-    //
+    /**
+     * Return Array of Preview Assets
+     * 
+     * @return array
+     */
     public function getPreviewAssets() {
         
         for ($i=0; $i<$this->getNumberPages(); $i++) {
@@ -188,6 +206,36 @@ class File
         }
         
         return $asset;
+    }
+    
+    /**
+     * Return Array of Thumb Paths
+     * 
+     * @return array
+     */
+    public function getThumbPaths() {
+        
+        for ($i=0; $i<$this->getNumberPages(); $i++) {
+            
+            $paths[] = \AppBundle\Config::FILE_THUMB_PATH . $this->getName() . '_' . $i . '.png';
+        }
+        
+        return $paths;
+    }
+    
+    /**
+     * Return Array of Preview Paths
+     * 
+     * @return array
+     */
+    public function getPreviewPaths() {
+        
+        for ($i=0; $i<$this->getNumberPages(); $i++) {
+            
+            $path[] = \AppBundle\Config::FILE_PREVIEW_PATH . $this->getName() . '_' . $i . '.png';
+        }
+        
+        return $path;
     }
 }
 
