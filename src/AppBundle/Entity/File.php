@@ -25,6 +25,11 @@ class File
     /**
      * @var integer
      */
+    private $size;
+
+    /**
+     * @var integer
+     */
     private $numberPages;
 
     /**
@@ -92,6 +97,30 @@ class File
     }
 
     /**
+     * Set size
+     *
+     * @param integer $size
+     *
+     * @return File
+     */
+    public function setSize($size)
+    {
+        $this->size = $size;
+
+        return $this;
+    }
+
+    /**
+     * Get size
+     *
+     * @return integer
+     */
+    public function getSize()
+    {
+        return $this->size;
+    }
+
+    /**
      * Set numberPages
      *
      * @param integer $numberPages
@@ -138,4 +167,27 @@ class File
     {
         return $this->document;
     }
+    
+    //
+    public function getThumbAssets() {
+        
+        for ($i=0; $i<$this->getNumberPages(); $i++) {
+            
+            $assets[] = 'images/thumbs/' . $this->getName() . '_' . $i . '.png';
+        }
+        
+        return $assets;
+    }
+    
+    //
+    public function getPreviewAssets() {
+        
+        for ($i=0; $i<$this->getNumberPages(); $i++) {
+            
+            $asset[] = 'images/previews/' . $this->getName() . '_' . $i . '.png';
+        }
+        
+        return $asset;
+    }
 }
+

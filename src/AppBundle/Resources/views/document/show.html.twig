@@ -36,13 +36,11 @@
                             {# todo: all thumbs from all files should be merged together #}
                             {% for pageNumber in 0..file.numberPages-1 %}
 
-                                {% set width = (file.numberPages > 5) ? (100 / file.numberPages - 2) : 'inherit' %}
-
-                                <a href="#show-preview" class="thumb" style="width: {{ width }}%; z-index: {{ file.numberPages - pageNumber }}">
-                                    <img src="{{ asset('images/thumbs/' ~ file.name ~ '_' ~ pageNumber) }}.jpg">
+                                <a href="#show-preview" class="thumb">
+                                    <img src="{{ asset(file.thumbAssets[pageNumber]) }}">
                                 </a>
 
-                                <img class="preview" src="{{ asset('images/previews/' ~ file.name ~ '_' ~ pageNumber) }}.jpg">
+                                <img class="preview" src="{{ asset(file.previewAssets[pageNumber]) }}">
                     
                             {% endfor %}
 

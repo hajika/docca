@@ -45,7 +45,10 @@ class DocumentController extends Controller
                     ->setUploadTime(new \DateTime('now'))
                     ->setActive(true);
             
-            $document = $this->uploadFiles($document, $form->get('files_new')->getData());     
+            #dump($form->get('files_new')->getData()); die(); 
+            $uploadedFiles = $form->get('files_new')->getData();
+            $files = $this->get('app.file_uploader')->init($document, $em)->upload($uploadedFiles);
+            $document->addFiles($files);
             
             $em->persist($document);
             $em->flush($document);
@@ -69,7 +72,6 @@ class DocumentController extends Controller
 
         return $this->render('document/show.html.twig', array(
             'document' => $document,
-            'path' => ['upload' => $this->getParameter('path_upload')],
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -101,7 +103,7 @@ class DocumentController extends Controller
             
             // remove und upload files
             $document = $this->removeFiles($document, $originalFiles);            
-            $document = $this->uploadFiles($document, $editForm->get('files_new')->getData()); 
+            dump($editForm->get('files_new')->getData()); die();
 
             $em->persist($document);
             $em->flush();

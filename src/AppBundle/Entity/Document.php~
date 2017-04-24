@@ -236,6 +236,23 @@ class Document
     }
 
     /**
+     * Add files
+     *
+     * @param \Doctrine\Common\Collections\ArrayCollection $files
+     *
+     * @return Document
+     */
+    public function addFiles(\Doctrine\Common\Collections\ArrayCollection $files)
+    {
+        foreach ($files as $file) {
+            
+            $this->addFile($file);
+        }
+
+        return $this;
+    }
+
+    /**
      * Remove file
      *
      * @param \AppBundle\Entity\File $file

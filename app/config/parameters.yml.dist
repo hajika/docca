@@ -17,8 +17,3 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
-
-    path_upload: '../web/uploads/'
-    path_image: '../web/images/'
-    path_thumb: '../web/images/thumbs/'
-    path_preview: '../web/images/previews/'
